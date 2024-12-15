@@ -1,0 +1,32 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+.blackbox {
+  padding: 1em;
+  background: black;
+  color: white;
+  border: 2px solid orange;
+  border-radius: 10px;
+}
+.center {
+  text-align: center;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Times New Roman", Times, serif;
+    color: darkblue;
+}
+hr {
+    border: 1px solid black;
+    width: 100%;Z
+}

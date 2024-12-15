@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 LaTeX in Bookdown | Bookdown: Flexible Document Creation in RStudio</title>
+  <meta name="description" content="<p>This tutorial demonstrates how to use the bookdown package to write structured and reproducible documents.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 LaTeX in Bookdown | Bookdown: Flexible Document Creation in RStudio" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/images/Bookcover.png" />
+  <meta property="og:description" content="<p>This tutorial demonstrates how to use the bookdown package to write structured and reproducible documents.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 LaTeX in Bookdown | Bookdown: Flexible Document Creation in RStudio" />
+  
+  <meta name="twitter:description" content="<p>This tutorial demonstrates how to use the bookdown package to write structured and reproducible documents.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="twitter:image" content="/images/Bookcover.png" />
+
+<meta name="author" content="Joseph Thiers" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapter4.html"/>
+<link rel="next" href="chapter6.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Bookdown Tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to Bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-rstudio-and-bookdown"><i class="fa fa-check"></i><b>1.1</b> Why RStudio and Bookdown?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#robust-documentation-and-support"><i class="fa fa-check"></i><b>1.2</b> Robust Documentation and Support</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#what-youll-learn-in-this-tutorial"><i class="fa fa-check"></i><b>1.3</b> What You’ll Learn in This Tutorial</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="chapter2.html"><a href="chapter2.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a></li>
+<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> Writing Content</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chapter3.html"><a href="chapter3.html#creating-chapters-and-sections"><i class="fa fa-check"></i><b>3.1</b> Creating Chapters and Sections</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="chapter3.html"><a href="chapter3.html#organizing-chapters"><i class="fa fa-check"></i><b>3.1.1</b> Organizing Chapters</a></li>
+<li class="chapter" data-level="3.1.2" data-path="chapter3.html"><a href="chapter3.html#adding-sections-and-subsections"><i class="fa fa-check"></i><b>3.1.2</b> Adding Sections and Subsections</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#formatting-text-in-bookdown"><i class="fa fa-check"></i><b>3.2</b> Formatting Text in Bookdown</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="chapter3.html"><a href="chapter3.html#creating-tables-in-bookdown"><i class="fa fa-check"></i><b>3.2.1</b> Creating Tables in Bookdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="chapter3.html"><a href="chapter3.html#creating-basic-markdown-tables"><i class="fa fa-check"></i><b>3.3</b> Creating Basic Markdown Tables</a></li>
+<li class="chapter" data-level="3.4" data-path="chapter3.html"><a href="chapter3.html#adding-code-chunks"><i class="fa fa-check"></i><b>3.4</b> Adding Code Chunks</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="chapter3.html"><a href="chapter3.html#example-loading-data"><i class="fa fa-check"></i><b>3.4.1</b> Example: Loading Data</a></li>
+<li class="chapter" data-level="3.4.2" data-path="chapter3.html"><a href="chapter3.html#customizing-code-chunk-options"><i class="fa fa-check"></i><b>3.4.2</b> Customizing Code Chunk Options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="chapter3.html"><a href="chapter3.html#adding-plots-and-images-to-your-bookdown-project"><i class="fa fa-check"></i><b>3.5</b> Adding Plots and Images to Your Bookdown Project</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="chapter3.html"><a href="chapter3.html#adding-images-with-rstudio-ggplot"><i class="fa fa-check"></i><b>3.5.1</b> Adding Images with RStudio GGPLOT</a></li>
+<li class="chapter" data-level="3.5.2" data-path="chapter3.html"><a href="chapter3.html#adding-images-using-markdown"><i class="fa fa-check"></i><b>3.5.2</b> Adding Images Using Markdown</a></li>
+<li class="chapter" data-level="3.5.3" data-path="chapter3.html"><a href="chapter3.html#adding-images-using-code-chunks"><i class="fa fa-check"></i><b>3.5.3</b> Adding Images Using Code Chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="chapter3.html"><a href="chapter3.html#chunk-options-for-images"><i class="fa fa-check"></i><b>3.6</b> Chunk Options for Images</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="chapter4.html"><a href="chapter4.html"><i class="fa fa-check"></i><b>4</b> Cross Referencing and Citations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="chapter4.html"><a href="chapter4.html#cross-referencing-sections"><i class="fa fa-check"></i><b>4.1</b> Cross-Referencing Sections</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter4.html"><a href="chapter4.html#see-section-refexamplepaper-for-more-information."><i class="fa fa-check"></i><b>4.2</b> See Section @ref(examplepaper) for more information.</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="chapter4.html"><a href="chapter4.html#cross-referencing-text"><i class="fa fa-check"></i><b>4.2.1</b> Cross-Referencing Text</a></li>
+<li class="chapter" data-level="4.2.2" data-path="chapter4.html"><a href="chapter4.html#cross-referencing-figures"><i class="fa fa-check"></i><b>4.2.2</b> Cross-Referencing Figures</a></li>
+<li class="chapter" data-level="4.2.3" data-path="chapter4.html"><a href="chapter4.html#cross-referencing-tables"><i class="fa fa-check"></i><b>4.2.3</b> Cross-Referencing Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="chapter4.html"><a href="chapter4.html#cross-referencing-equations"><i class="fa fa-check"></i><b>4.3</b> Cross-Referencing Equations</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="chapter4.html"><a href="chapter4.html#creating-and-labeling-an-equation"><i class="fa fa-check"></i><b>4.3.1</b> Creating and Labeling an Equation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="chapter4.html"><a href="chapter4.html#adding-citations-and-managing-references"><i class="fa fa-check"></i><b>4.4</b> Adding Citations and Managing References</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="chapter4.html"><a href="chapter4.html#step-1-create-a-.bib-file"><i class="fa fa-check"></i><b>4.4.1</b> Step 1: Create a <code>.bib</code> File</a></li>
+<li class="chapter" data-level="4.4.2" data-path="chapter4.html"><a href="chapter4.html#step-2-link-the-.bib-file-in-index.rmd"><i class="fa fa-check"></i><b>4.4.2</b> Step 2: Link the <code>.bib</code> File in <code>index.Rmd</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="chapter4.html"><a href="chapter4.html#step-3-cite-sources-in-your-text"><i class="fa fa-check"></i><b>4.4.3</b> Step 3: Cite Sources in Your Text</a></li>
+<li class="chapter" data-level="4.4.4" data-path="chapter4.html"><a href="chapter4.html#step-4-customize-citation-style-optional"><i class="fa fa-check"></i><b>4.4.4</b> Step 4: Customize Citation Style (Optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="chapter4.html"><a href="chapter4.html#using-cross-references-with-citations"><i class="fa fa-check"></i><b>4.5</b> Using Cross-References with Citations</a></li>
+<li class="chapter" data-level="4.6" data-path="chapter4.html"><a href="chapter4.html#using-cross-references-with-citations-helps-keep-your-document-organized-and-easy-to-navigate."><i class="fa fa-check"></i><b>4.6</b> Using cross-references with citations helps keep your document organized and easy to navigate.</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="chapter5.html"><a href="chapter5.html"><i class="fa fa-check"></i><b>5</b> LaTeX in Bookdown</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="chapter5.html"><a href="chapter5.html#including-latex-packages-in-bookdown"><i class="fa fa-check"></i><b>5.1</b> Including LaTeX Packages in Bookdown</a></li>
+<li class="chapter" data-level="5.2" data-path="chapter5.html"><a href="chapter5.html#using-a-preamble.tex-file"><i class="fa fa-check"></i><b>5.2</b> Using a <code>preamble.tex</code> File</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter5.html"><a href="chapter5.html#mathematical-equations"><i class="fa fa-check"></i><b>5.3</b> Mathematical Equations</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter5.html"><a href="chapter5.html#inline-equations"><i class="fa fa-check"></i><b>5.4</b> Inline Equations</a></li>
+<li class="chapter" data-level="5.5" data-path="chapter5.html"><a href="chapter5.html#display-equations"><i class="fa fa-check"></i><b>5.5</b> Display Equations</a></li>
+<li class="chapter" data-level="5.6" data-path="chapter5.html"><a href="chapter5.html#theorems-lemmas-and-proofs"><i class="fa fa-check"></i><b>5.6</b> Theorems, Lemmas, and Proofs</a></li>
+<li class="chapter" data-level="5.7" data-path="chapter5.html"><a href="chapter5.html#adding-a-theorem"><i class="fa fa-check"></i><b>5.7</b> Adding a Theorem</a></li>
+<li class="chapter" data-level="5.8" data-path="chapter5.html"><a href="chapter5.html#adding-a-lemma"><i class="fa fa-check"></i><b>5.8</b> Adding a Lemma</a></li>
+<li class="chapter" data-level="5.9" data-path="chapter5.html"><a href="chapter5.html#adding-a-proof"><i class="fa fa-check"></i><b>5.9</b> Adding a Proof</a></li>
+<li class="chapter" data-level="5.10" data-path="chapter5.html"><a href="chapter5.html#referencing-various-math-environments"><i class="fa fa-check"></i><b>5.10</b> Referencing Various Math Environments</a></li>
+<li class="chapter" data-level="5.11" data-path="chapter5.html"><a href="chapter5.html#tips-for-latex-in-bookdown"><i class="fa fa-check"></i><b>5.11</b> Tips for LaTeX in Bookdown</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="chapter6.html"><a href="chapter6.html"><i class="fa fa-check"></i><b>6</b> Advanced Features</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="chapter6.html"><a href="chapter6.html#using-latex-for-advanced-formatting"><i class="fa fa-check"></i><b>6.1</b> Using LaTeX for Advanced Formatting</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="chapter6.html"><a href="chapter6.html#example-adding-a-custom-box"><i class="fa fa-check"></i><b>6.1.1</b> Example: Adding a Custom Box</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="chapter6.html"><a href="chapter6.html#customizing-document-with-latex"><i class="fa fa-check"></i><b>6.2</b> Customizing Document with LaTeX</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="chapter6.html"><a href="chapter6.html#code-explanation"><i class="fa fa-check"></i><b>6.2.1</b> Code Explanation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="chapter6.html"><a href="chapter6.html#adding-custom-css"><i class="fa fa-check"></i><b>6.3</b> Adding Custom CSS</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="chapter6.html"><a href="chapter6.html#step-1-create-a-custom-css-file"><i class="fa fa-check"></i><b>6.3.1</b> Step 1: Create a Custom CSS File</a></li>
+<li class="chapter" data-level="6.3.2" data-path="chapter6.html"><a href="chapter6.html#step-2-include-the-css-file-in-the-yaml-header"><i class="fa fa-check"></i><b>6.3.2</b> Step 2: Include the CSS File in the YAML Header</a></li>
+<li class="chapter" data-level="6.3.3" data-path="chapter6.html"><a href="chapter6.html#step-3-adding-javascript-optional"><i class="fa fa-check"></i><b>6.3.3</b> Step 3: Adding JavaScript (Optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="chapter6.html"><a href="chapter6.html#adding-custom-elements"><i class="fa fa-check"></i><b>6.4</b> Adding Custom Elements</a></li>
+<li class="chapter" data-level="6.5" data-path="chapter6.html"><a href="chapter6.html#customizing-document-with-css"><i class="fa fa-check"></i><b>6.5</b> Customizing Document with CSS</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="chapter6.html"><a href="chapter6.html#explanation-of-the-css-code"><i class="fa fa-check"></i><b>6.5.1</b> Explanation of the CSS Code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="chapter7.html"><a href="chapter7.html"><i class="fa fa-check"></i><b>7</b> Customizing Output</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="chapter7.html"><a href="chapter7.html#choosing-an-output-format"><i class="fa fa-check"></i><b>7.1</b> Choosing an Output Format</a></li>
+<li class="chapter" data-level="7.2" data-path="chapter7.html"><a href="chapter7.html#available-output-options-for-bookdown"><i class="fa fa-check"></i><b>7.2</b> Available Output Options for Bookdown</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="chapter7.html"><a href="chapter7.html#gitbook-bookdowngitbook"><i class="fa fa-check"></i><b>7.2.1</b> 1. GitBook (<code>bookdown::gitbook</code>)</a></li>
+<li class="chapter" data-level="7.2.2" data-path="chapter7.html"><a href="chapter7.html#pdf-book-bookdownpdf_book"><i class="fa fa-check"></i><b>7.2.2</b> 2. PDF Book (<code>bookdown::pdf_book</code>)</a></li>
+<li class="chapter" data-level="7.2.3" data-path="chapter7.html"><a href="chapter7.html#epub-book-bookdownepub_book"><i class="fa fa-check"></i><b>7.2.3</b> 3. EPUB Book (<code>bookdown::epub_book</code>)</a></li>
+<li class="chapter" data-level="7.2.4" data-path="chapter7.html"><a href="chapter7.html#html-document-rmarkdownhtml_document"><i class="fa fa-check"></i><b>7.2.4</b> 4. HTML Document (<code>rmarkdown::html_document</code>)</a></li>
+<li class="chapter" data-level="7.2.5" data-path="chapter7.html"><a href="chapter7.html#word-document-bookdownword_document2"><i class="fa fa-check"></i><b>7.2.5</b> 5. Word Document (<code>bookdown::word_document2</code>)</a></li>
+<li class="chapter" data-level="7.2.6" data-path="chapter7.html"><a href="chapter7.html#tufte-handout-bookdowntufte_html_book-bookdowntufte_pdf_book"><i class="fa fa-check"></i><b>7.2.6</b> 6. Tufte Handout (<code>bookdown::tufte_html_book</code> / <code>bookdown::tufte_pdf_book</code>)</a></li>
+<li class="chapter" data-level="7.2.7" data-path="chapter7.html"><a href="chapter7.html#html-with-bookdown-specific-features-bookdownhtml_document2"><i class="fa fa-check"></i><b>7.2.7</b> 7. HTML with Bookdown-Specific Features (<code>bookdown::html_document2</code>)</a></li>
+<li class="chapter" data-level="7.2.8" data-path="chapter7.html"><a href="chapter7.html#github-document-rmarkdowngithub_document"><i class="fa fa-check"></i><b>7.2.8</b> 8. GitHub Document (<code>rmarkdown::github_document</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="chapter7.html"><a href="chapter7.html#customizing-html-output"><i class="fa fa-check"></i><b>7.3</b> Customizing HTML Output</a></li>
+<li class="chapter" data-level="7.4" data-path="chapter7.html"><a href="chapter7.html#customizing-pdf-output"><i class="fa fa-check"></i><b>7.4</b> Customizing PDF Output</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="chapter7.html"><a href="chapter7.html#document-size"><i class="fa fa-check"></i><b>7.4.1</b> Document Size</a></li>
+<li class="chapter" data-level="7.4.2" data-path="chapter7.html"><a href="chapter7.html#document-type"><i class="fa fa-check"></i><b>7.4.2</b> Document Type</a></li>
+<li class="chapter" data-level="7.4.3" data-path="chapter7.html"><a href="chapter7.html#latex-engine"><i class="fa fa-check"></i><b>7.4.3</b> LaTeX Engine</a></li>
+<li class="chapter" data-level="7.4.4" data-path="chapter7.html"><a href="chapter7.html#custom-latex-packages"><i class="fa fa-check"></i><b>7.4.4</b> Custom LaTeX Packages</a></li>
+<li class="chapter" data-level="7.4.5" data-path="chapter7.html"><a href="chapter7.html#page-layout-customization"><i class="fa fa-check"></i><b>7.4.5</b> Page Layout Customization</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="chapter7.html"><a href="chapter7.html#customizing-epub-output"><i class="fa fa-check"></i><b>7.5</b> Customizing EPUB Output</a></li>
+<li class="chapter" data-level="7.6" data-path="chapter7.html"><a href="chapter7.html#specifying-global-settings-in-_bookdown.yml"><i class="fa fa-check"></i><b>7.6</b> Specifying Global Settings in <code>_bookdown.yml</code></a></li>
+<li class="chapter" data-level="7.7" data-path="chapter7.html"><a href="chapter7.html#example-output"><i class="fa fa-check"></i><b>7.7</b> Example Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="latexdistributions.html"><a href="latexdistributions.html"><i class="fa fa-check"></i><b>8</b> LaTeX Distributions</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="latexdistributions.html"><a href="latexdistributions.html#recommended-latex-distribution"><i class="fa fa-check"></i><b>8.1</b> Recommended LaTeX Distribution</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="latexdistributions.html"><a href="latexdistributions.html#tinytex-recommended"><i class="fa fa-check"></i><b>8.1.1</b> 1. <strong>TinyTeX</strong> (Recommended)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="latexdistributions.html"><a href="latexdistributions.html#additional-latex-distributions"><i class="fa fa-check"></i><b>8.2</b> Additional LaTeX Distributions</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="latexdistributions.html"><a href="latexdistributions.html#tex-live"><i class="fa fa-check"></i><b>8.2.1</b> 2. <strong>TeX Live</strong></a></li>
+<li class="chapter" data-level="8.2.2" data-path="latexdistributions.html"><a href="latexdistributions.html#miktex"><i class="fa fa-check"></i><b>8.2.2</b> 3. <strong>MikTeX</strong></a></li>
+<li class="chapter" data-level="8.2.3" data-path="latexdistributions.html"><a href="latexdistributions.html#mactex-for-macos"><i class="fa fa-check"></i><b>8.2.3</b> 4. <strong>MacTeX</strong> (for macOS)</a></li>
+<li class="chapter" data-level="8.2.4" data-path="latexdistributions.html"><a href="latexdistributions.html#protext-for-windows"><i class="fa fa-check"></i><b>8.2.4</b> 5. <strong>ProTeXt</strong> (for Windows)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="markdownadvanced.html"><a href="markdownadvanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Text Formatting Options</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="markdownadvanced.html"><a href="markdownadvanced.html#headers"><i class="fa fa-check"></i><b>9.1</b> 1. Headers</a></li>
+<li class="chapter" data-level="9.2" data-path="markdownadvanced.html"><a href="markdownadvanced.html#emphasis"><i class="fa fa-check"></i><b>9.2</b> 2. Emphasis</a></li>
+<li class="chapter" data-level="9.3" data-path="markdownadvanced.html"><a href="markdownadvanced.html#strikethrough"><i class="fa fa-check"></i><b>9.3</b> 3. Strikethrough</a></li>
+<li class="chapter" data-level="9.4" data-path="markdownadvanced.html"><a href="markdownadvanced.html#lists"><i class="fa fa-check"></i><b>9.4</b> 4. Lists</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="markdownadvanced.html"><a href="markdownadvanced.html#bullet-lists"><i class="fa fa-check"></i><b>9.4.1</b> 4.1 Bullet Lists</a></li>
+<li class="chapter" data-level="9.4.2" data-path="markdownadvanced.html"><a href="markdownadvanced.html#numbered-lists"><i class="fa fa-check"></i><b>9.4.2</b> 4.2 Numbered Lists</a></li>
+<li class="chapter" data-level="9.4.3" data-path="markdownadvanced.html"><a href="markdownadvanced.html#task-lists"><i class="fa fa-check"></i><b>9.4.3</b> 4.3 Task Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="markdownadvanced.html"><a href="markdownadvanced.html#blockquotes"><i class="fa fa-check"></i><b>9.5</b> 5. Blockquotes</a></li>
+<li class="chapter" data-level="9.6" data-path="markdownadvanced.html"><a href="markdownadvanced.html#code"><i class="fa fa-check"></i><b>9.6</b> 6. Code</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="markdownadvanced.html"><a href="markdownadvanced.html#inline-code"><i class="fa fa-check"></i><b>9.6.1</b> 6.1 Inline Code</a></li>
+<li class="chapter" data-level="9.6.2" data-path="markdownadvanced.html"><a href="markdownadvanced.html#code-blocks"><i class="fa fa-check"></i><b>9.6.2</b> 6.2 Code Blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="markdownadvanced.html"><a href="markdownadvanced.html#horizontal-rule"><i class="fa fa-check"></i><b>9.7</b> 7. Horizontal Rule</a></li>
+<li class="chapter" data-level="9.8" data-path="markdownadvanced.html"><a href="markdownadvanced.html#links"><i class="fa fa-check"></i><b>9.8</b> 8. Links</a></li>
+<li class="chapter" data-level="9.9" data-path="markdownadvanced.html"><a href="markdownadvanced.html#images"><i class="fa fa-check"></i><b>9.9</b> 9. Images</a></li>
+<li class="chapter" data-level="9.10" data-path="markdownadvanced.html"><a href="markdownadvanced.html#tables"><i class="fa fa-check"></i><b>9.10</b> 10. Tables</a></li>
+<li class="chapter" data-level="9.11" data-path="markdownadvanced.html"><a href="markdownadvanced.html#footnotes"><i class="fa fa-check"></i><b>9.11</b> 11. Footnotes</a></li>
+<li class="chapter" data-level="9.12" data-path="markdownadvanced.html"><a href="markdownadvanced.html#definition-lists-pandoc"><i class="fa fa-check"></i><b>9.12</b> 12. Definition Lists (Pandoc)</a></li>
+<li class="chapter" data-level="9.13" data-path="markdownadvanced.html"><a href="markdownadvanced.html#math"><i class="fa fa-check"></i><b>9.13</b> 13. Math</a>
+<ul>
+<li class="chapter" data-level="9.13.1" data-path="markdownadvanced.html"><a href="markdownadvanced.html#inline-math"><i class="fa fa-check"></i><b>9.13.1</b> 13.1 Inline Math</a></li>
+<li class="chapter" data-level="9.13.2" data-path="markdownadvanced.html"><a href="markdownadvanced.html#block-math"><i class="fa fa-check"></i><b>9.13.2</b> 13.2 Block Math</a></li>
+<li class="chapter" data-level="9.13.3" data-path="markdownadvanced.html"><a href="markdownadvanced.html#latex-environment"><i class="fa fa-check"></i><b>9.13.3</b> 13.3 LaTeX Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="9.14" data-path="markdownadvanced.html"><a href="markdownadvanced.html#custom-blocks-pandoc"><i class="fa fa-check"></i><b>9.14</b> 14. Custom Blocks (Pandoc)</a></li>
+<li class="chapter" data-level="9.15" data-path="markdownadvanced.html"><a href="markdownadvanced.html#html-tags"><i class="fa fa-check"></i><b>9.15</b> 15. HTML Tags</a></li>
+<li class="chapter" data-level="9.16" data-path="markdownadvanced.html"><a href="markdownadvanced.html#metadata-blocks-pandoc"><i class="fa fa-check"></i><b>9.16</b> 16. Metadata Blocks (Pandoc)</a></li>
+<li class="chapter" data-level="9.17" data-path="markdownadvanced.html"><a href="markdownadvanced.html#line-breaks"><i class="fa fa-check"></i><b>9.17</b> 17. Line Breaks</a></li>
+<li class="chapter" data-level="9.18" data-path="markdownadvanced.html"><a href="markdownadvanced.html#escaping-characters"><i class="fa fa-check"></i><b>9.18</b> 18. Escaping Characters</a></li>
+<li class="chapter" data-level="9.19" data-path="markdownadvanced.html"><a href="markdownadvanced.html#highlight-pandoc"><i class="fa fa-check"></i><b>9.19</b> 19. Highlight (Pandoc)</a></li>
+<li class="chapter" data-level="9.20" data-path="markdownadvanced.html"><a href="markdownadvanced.html#superscript-and-subscript"><i class="fa fa-check"></i><b>9.20</b> 20. Superscript and Subscript</a>
+<ul>
+<li class="chapter" data-level="9.20.1" data-path="markdownadvanced.html"><a href="markdownadvanced.html#superscript"><i class="fa fa-check"></i><b>9.20.1</b> 20.1 Superscript</a></li>
+<li class="chapter" data-level="9.20.2" data-path="markdownadvanced.html"><a href="markdownadvanced.html#subscript"><i class="fa fa-check"></i><b>9.20.2</b> 20.2 Subscript</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="examplepaper.html"><a href="examplepaper.html"><i class="fa fa-check"></i><b>10</b> Example Document: Union Earnings Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="examplepaper.html"><a href="examplepaper.html#whats-a-union"><i class="fa fa-check"></i><b>10.1</b> What’s a Union?</a></li>
+<li class="chapter" data-level="10.2" data-path="examplepaper.html"><a href="examplepaper.html#quick-history"><i class="fa fa-check"></i><b>10.2</b> Quick History</a></li>
+<li class="chapter" data-level="10.3" data-path="examplepaper.html"><a href="examplepaper.html#why-a-union"><i class="fa fa-check"></i><b>10.3</b> Why a Union?</a></li>
+<li class="chapter" data-level="10.4" data-path="examplepaper.html"><a href="examplepaper.html#recent-union-wins"><i class="fa fa-check"></i><b>10.4</b> Recent Union Wins</a></li>
+<li class="chapter" data-level="10.5" data-path="examplepaper.html"><a href="examplepaper.html#unions-are-growing"><i class="fa fa-check"></i><b>10.5</b> Unions are Growing!</a></li>
+<li class="chapter" data-level="10.6" data-path="examplepaper.html"><a href="examplepaper.html#getting-involved"><i class="fa fa-check"></i><b>10.6</b> Getting Involved!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Bookdown: Flexible Document Creation in RStudio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter5" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> LaTeX in Bookdown<a href="chapter5.html#chapter5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Bookdown offers powerful support for LaTeX, allowing you to seamlessly integrate any LaTeX packages you need into your documents. Whether you’re working with mathematical equations, theorems, lemmas, proofs, or other advanced features, this tutorial will guide you through the essentials of using LaTeX in Bookdown, showing you how to effectively incorporate and reference these elements.</p>
+<hr />
+<div id="including-latex-packages-in-bookdown" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Including LaTeX Packages in Bookdown<a href="chapter5.html#including-latex-packages-in-bookdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One of the powerful features of Bookdown is its seamless integration with LaTeX, allowing you to include any LaTeX package that suits your needs. This flexibility is especially useful when working with advanced mathematical notations, custom formatting, or specialized content.</p>
+</div>
+<div id="using-a-preamble.tex-file" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Using a <code>preamble.tex</code> File<a href="chapter5.html#using-a-preamble.tex-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To include LaTeX packages, you need to create a <code>preamble.tex</code> file and link it in your <code>_output.yml</code> file. Bookdown created this <code>preamble.tex</code> file for you when you started this tutorial so you don’t need to create it again. The <code>preamble.tex</code> file is processed before the document is rendered allowing you to load any additional LaTeX packages you may need. The <code>preamble.tex</code> file also allows you to fully customize the output of your PDF using your existing LaTeX knowledge.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Create a <code>preamble.tex</code> File</strong>
+Create a file on your computer with the name <code>preamble.tex</code> and add it to the directory of your Bookdown project if it does not already exist. If the file already exists simply open the file within RStudi for easy editing. You can include as many packages as you need in the <code>preamble.tex</code> file. For example here is a list of packages and small changes I made to output the final example document in this tutorial as an a6 sized document:</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb26-1"><a href="chapter5.html#cb26-1" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">booktabs</span>}</span>
+<span id="cb26-2"><a href="chapter5.html#cb26-2" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">anyfontsize</span>}</span>
+<span id="cb26-3"><a href="chapter5.html#cb26-3" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">titlesec</span>}</span>
+<span id="cb26-4"><a href="chapter5.html#cb26-4" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">fancyhdr</span>}</span>
+<span id="cb26-5"><a href="chapter5.html#cb26-5" tabindex="-1"></a><span class="bu">\usepackage</span>[paperwidth=4.13in, paperheight=5.83in]{<span class="ex">geometry</span>}</span>
+<span id="cb26-6"><a href="chapter5.html#cb26-6" tabindex="-1"></a><span class="bu">\usepackage</span>[font=small, labelfont=bf]{<span class="ex">caption</span>}</span>
+<span id="cb26-7"><a href="chapter5.html#cb26-7" tabindex="-1"></a><span class="fu">\geometry</span>{left=.5in}</span>
+<span id="cb26-8"><a href="chapter5.html#cb26-8" tabindex="-1"></a><span class="fu">\geometry</span>{right=.5in}</span>
+<span id="cb26-9"><a href="chapter5.html#cb26-9" tabindex="-1"></a><span class="fu">\geometry</span>{bottom=.5in}</span>
+<span id="cb26-10"><a href="chapter5.html#cb26-10" tabindex="-1"></a><span class="fu">\geometry</span>{top=.75in}</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Link <code>preamble.tex</code> in <code>_output.yml</code></strong><br />
+You need to make sure that the preamble is included in your _output file. Update your <code>_output.yml</code> file to include the <code>preamble.tex</code> file for PDF output:</li>
+</ol>
+<div class="sourceCode" id="cb27"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb27-1"><a href="chapter5.html#cb27-1" tabindex="-1"></a>bookdown:<span class="sc">:pdf_book:</span></span>
+<span id="cb27-2"><a href="chapter5.html#cb27-2" tabindex="-1"></a>  includes:</span>
+<span id="cb27-3"><a href="chapter5.html#cb27-3" tabindex="-1"></a>    in_header: preamble.tex</span>
+<span id="cb27-4"><a href="chapter5.html#cb27-4" tabindex="-1"></a>  latex_engine: xelatex</span>
+<span id="cb27-5"><a href="chapter5.html#cb27-5" tabindex="-1"></a>  citation_package: natbib</span>
+<span id="cb27-6"><a href="chapter5.html#cb27-6" tabindex="-1"></a>  keep_tex: yes</span></code></pre></div>
+</div>
+<div id="mathematical-equations" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Mathematical Equations<a href="chapter5.html#mathematical-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Bookdown makes it easy to include both inline and display-style equations while also allowing you to reference these equations for easy reference at any point within your project.</p>
+</div>
+<div id="inline-equations" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Inline Equations<a href="chapter5.html#inline-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Use <code>$...$</code> to include inline math equations within your text. The following code:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb28-1"><a href="chapter5.html#cb28-1" tabindex="-1"></a>The formula for the area of a circle is $( A = \pi r^2 )$, where $( r )$ is the radius.</span></code></pre></div>
+<p>Then is displayed as follows:</p>
+<p>The formula for the area of a circle is <span class="math inline">\(( A = \pi r^2 )\)</span>, where <span class="math inline">\(( r )\)</span> is the radius.</p>
+</div>
+<div id="display-equations" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Display Equations<a href="chapter5.html#display-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For equations that you may want to have on their own line you have two options. You can surround your LaTeX code <code>$$...$$</code> or alternatively use the LaTeX <code>equation</code> environment.</p>
+<p>Here we see the usage of <code>$$...$$</code></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb29-1"><a href="chapter5.html#cb29-1" tabindex="-1"></a>$$</span>
+<span id="cb29-2"><a href="chapter5.html#cb29-2" tabindex="-1"></a>E = mc^2</span>
+<span id="cb29-3"><a href="chapter5.html#cb29-3" tabindex="-1"></a>$$</span></code></pre></div>
+<p>Which gives us:</p>
+<p><span class="math display">\[
+E = mc^2
+\]</span></p>
+<p>Here we are using the <code>equation</code> environment with a label:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb30-1"><a href="chapter5.html#cb30-1" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb30-2"><a href="chapter5.html#cb30-2" tabindex="-1"></a>  E = mc^2</span>
+<span id="cb30-3"><a href="chapter5.html#cb30-3" tabindex="-1"></a>  (<span class="sc">\#</span>eq:einstein)</span>
+<span id="cb30-4"><a href="chapter5.html#cb30-4" tabindex="-1"></a>\end{equation}</span></code></pre></div>
+<p>Which outputs as such:</p>
+<p><span class="math display" id="eq:einstein">\[\begin{equation}
+  E = mc^2
+  \tag{4.1}
+\end{equation}\]</span></p>
+<p>Reminder for referencing equations: For easy reference within your document we are also able to add a reference to any equation by using <code>\#eq:your-label</code> as such:</p>
+<pre><code>(\#eq:einstein)</code></pre>
+<p>So that you can easily reference it later with <code>\@ref(eq:einstein)</code>. As an example, we labeled the above equation as <code>(\#eq:einstein)</code>. So we can reference it by using <code>\@ref(eq:einstein)</code>:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb32-1"><a href="chapter5.html#cb32-1" tabindex="-1"></a>As shown in Equation \@ref(eq:einstein), energy is proportional to mass.</span></code></pre></div>
+<p>As shown in Equation <a href="chapter4.html#eq:einstein">(4.1)</a>, energy is proportional to mass.</p>
+<hr />
+</div>
+<div id="theorems-lemmas-and-proofs" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Theorems, Lemmas, and Proofs<a href="chapter5.html#theorems-lemmas-and-proofs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Bookdown supports theorems, lemmas, and proofs, for structured mathematical writing.</p>
+</div>
+<div id="adding-a-theorem" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Adding a Theorem<a href="chapter5.html#adding-a-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Define a theorem using the following syntax:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb33-1"><a href="chapter5.html#cb33-1" tabindex="-1"></a>::: {.theorem #theoremlabel}</span>
+<span id="cb33-2"><a href="chapter5.html#cb33-2" tabindex="-1"></a>This is a <span class="in">`theorem`</span> environment that can contain **any**</span>
+<span id="cb33-3"><a href="chapter5.html#cb33-3" tabindex="-1"></a>_Markdown_ syntax.</span>
+<span id="cb33-4"><a href="chapter5.html#cb33-4" tabindex="-1"></a>For any integer $n \geq 1$, the sum of the first $n$ positive integers is given by</span>
+<span id="cb33-5"><a href="chapter5.html#cb33-5" tabindex="-1"></a>$$</span>
+<span id="cb33-6"><a href="chapter5.html#cb33-6" tabindex="-1"></a>S = \frac{n(n + 1)}{2}</span>
+<span id="cb33-7"><a href="chapter5.html#cb33-7" tabindex="-1"></a>$$</span>
+<span id="cb33-8"><a href="chapter5.html#cb33-8" tabindex="-1"></a>:::</span></code></pre></div>
+<p>Reference the theorem in your text by add <code>#theoremlabel</code> to your code block as such:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb34-1"><a href="chapter5.html#cb34-1" tabindex="-1"></a>::: {.theorem #theoremlabel}</span>
+<span id="cb34-2"><a href="chapter5.html#cb34-2" tabindex="-1"></a>This is a <span class="in">`theorem`</span> environment that can contain **any**</span>
+<span id="cb34-3"><a href="chapter5.html#cb34-3" tabindex="-1"></a>_Markdown_ syntax.</span>
+<span id="cb34-4"><a href="chapter5.html#cb34-4" tabindex="-1"></a>For any integer $n \geq 1$, the sum of the first $n$ positive integers is given by</span>
+<span id="cb34-5"><a href="chapter5.html#cb34-5" tabindex="-1"></a>$$</span>
+<span id="cb34-6"><a href="chapter5.html#cb34-6" tabindex="-1"></a>S = \frac{n(n + 1)}{2}</span>
+<span id="cb34-7"><a href="chapter5.html#cb34-7" tabindex="-1"></a>$$</span>
+<span id="cb34-8"><a href="chapter5.html#cb34-8" tabindex="-1"></a>:::</span></code></pre></div>
+<p>Which will cause your theorem to display as follows:</p>
+<div class="theorem">
+<p><span id="thm:theoremlabel" class="theorem"><strong>Theorem 5.1  </strong></span>This is a <code>theorem</code> environment that can contain <strong>any</strong>
+<em>Markdown</em> syntax.
+For any integer <span class="math inline">\(n \geq 1\)</span>, the sum of the first <span class="math inline">\(n\)</span> positive integers is given by
+<span class="math display">\[
+S = \frac{n(n + 1)}{2}
+\]</span></p>
+</div>
+<p>If this is a theorem that you need to reference in other parts of your document you can label it as we did above with <code>#theoremlabel</code>. Then when you need to reference it you can do so using <code>\@ref(thm:theoremlabel)</code> wherever needed. As an example, lets refer back to the above Theorem <a href="chapter5.html#thm:theoremlabel">5.1</a>.</p>
+</div>
+<div id="adding-a-lemma" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Adding a Lemma<a href="chapter5.html#adding-a-lemma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Define a lemma similarly:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb35-1"><a href="chapter5.html#cb35-1" tabindex="-1"></a>::: {.lemma #lemmalabel}</span>
+<span id="cb35-2"><a href="chapter5.html#cb35-2" tabindex="-1"></a>Let $x\in \mathbb Z$.If $5x-7$ is odd,then $x$ is even.</span>
+<span id="cb35-3"><a href="chapter5.html#cb35-3" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="lemma">
+<p><span id="lem:lemmalabel" class="lemma"><strong>Lemma 5.1  </strong></span>Let <span class="math inline">\(x \in \mathbb Z\)</span>. If <span class="math inline">\(5x-7\)</span> is odd,then <span class="math inline">\(x\)</span> is even.</p>
+</div>
+<p>Reference the lemma:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb36-1"><a href="chapter5.html#cb36-1" tabindex="-1"></a>Lemma \@ref(lem:lemmalabel) confirms that the sum of two even integers is even.</span></code></pre></div>
+<p>Lemma <a href="chapter5.html#lem:lemmalabel">5.1</a> confirms that the sum of two even integers is even.</p>
+</div>
+<div id="adding-a-proof" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> Adding a Proof<a href="chapter5.html#adding-a-proof" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Proofs can be added using the <code>proof</code> environment.</p>
+<p>A</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb37-1"><a href="chapter5.html#cb37-1" tabindex="-1"></a>::: {.proof}</span>
+<span id="cb37-2"><a href="chapter5.html#cb37-2" tabindex="-1"></a>Let $x \in \mathbb Z$. Suppose $7x+5$ is odd. Then $7x+5=2k+1$ for some $k \in \mathbb Z$. Then</span>
+<span id="cb37-3"><a href="chapter5.html#cb37-3" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb37-4"><a href="chapter5.html#cb37-4" tabindex="-1"></a>    7x+5&amp;=2k+1<span class="sc">\\</span></span>
+<span id="cb37-5"><a href="chapter5.html#cb37-5" tabindex="-1"></a>    7x&amp;=2k-4<span class="sc">\\</span></span>
+<span id="cb37-6"><a href="chapter5.html#cb37-6" tabindex="-1"></a>    x&amp;=2k-6x-4<span class="sc">\\</span></span>
+<span id="cb37-7"><a href="chapter5.html#cb37-7" tabindex="-1"></a>    x&amp;=2(k-3x-2).</span>
+<span id="cb37-8"><a href="chapter5.html#cb37-8" tabindex="-1"></a>\end{align*}</span>
+<span id="cb37-9"><a href="chapter5.html#cb37-9" tabindex="-1"></a>Since $k-3x-2 \in \mathbb Z$, $x$ is even.</span>
+<span id="cb37-10"><a href="chapter5.html#cb37-10" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="proof">
+<p><span id="unlabeled-div-1" class="proof"><em>Proof</em>. </span>Let <span class="math inline">\(x \in \mathbb Z\)</span>. Suppose <span class="math inline">\(7x+5\)</span> is odd. Then <span class="math inline">\(7x+5=2k+1\)</span> for some <span class="math inline">\(k \in \mathbb Z\)</span>. Then
+<span class="math display">\[\begin{align*}
+    7x+5&amp;=2k+1\\
+    7x&amp;=2k-4\\
+    x&amp;=2k-6x-4\\
+    x&amp;=2(k-3x-2).
+\end{align*}\]</span>
+Since <span class="math inline">\(k-3x-2 \in \mathbb Z\)</span>, <span class="math inline">\(x\)</span> is even.</p>
+</div>
+<hr />
+</div>
+<div id="referencing-various-math-environments" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> Referencing Various Math Environments<a href="chapter5.html#referencing-various-math-environments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you need to refer to create a different environment you just need to change what’s between the brackets to the type of environment you are using.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb38-1"><a href="chapter5.html#cb38-1" tabindex="-1"></a>::: {.environment}</span>
+<span id="cb38-2"><a href="chapter5.html#cb38-2" tabindex="-1"></a>Your information goes here</span>
+<span id="cb38-3"><a href="chapter5.html#cb38-3" tabindex="-1"></a>:::</span></code></pre></div>
+<p>When you are referencing the environment you would just ensure that you use the label prefix from the below table for the environment you wish to reference, changing the word prefix in:<code>\@ref(prefix:label)</code> to the appropriate environment.</p>
+<table>
+<caption><span id="tab:theorem-table">Table 5.1: </span>Theorem environments in Bookdown.</caption>
+<thead>
+<tr class="header">
+<th align="left">Environment</th>
+<th align="left">Printed Name</th>
+<th align="left">Label Prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">theorem</td>
+<td align="left">Theorem</td>
+<td align="left">thm</td>
+</tr>
+<tr class="even">
+<td align="left">lemma</td>
+<td align="left">Lemma</td>
+<td align="left">lem</td>
+</tr>
+<tr class="odd">
+<td align="left">corollary</td>
+<td align="left">Corollary</td>
+<td align="left">cor</td>
+</tr>
+<tr class="even">
+<td align="left">proposition</td>
+<td align="left">Proposition</td>
+<td align="left">prp</td>
+</tr>
+<tr class="odd">
+<td align="left">conjecture</td>
+<td align="left">Conjecture</td>
+<td align="left">cnj</td>
+</tr>
+<tr class="even">
+<td align="left">definition</td>
+<td align="left">Definition</td>
+<td align="left">def</td>
+</tr>
+<tr class="odd">
+<td align="left">example</td>
+<td align="left">Example</td>
+<td align="left">exm</td>
+</tr>
+<tr class="even">
+<td align="left">exercise</td>
+<td align="left">Exercise</td>
+<td align="left">exr</td>
+</tr>
+<tr class="odd">
+<td align="left">hypothesis</td>
+<td align="left">Hypothesis</td>
+<td align="left">hyp</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tips-for-latex-in-bookdown" class="section level2 hasAnchor" number="5.11">
+<h2><span class="header-section-number">5.11</span> Tips for LaTeX in Bookdown<a href="chapter5.html#tips-for-latex-in-bookdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Use Labels Consistently</strong>: Use meaningful and unique labels for cross-referencing.</li>
+<li><strong>Use Math Mode</strong>: Always enclose mathematical symbols in <code>$...$</code> or <code>$$...$$</code> to render correctly.</li>
+<li><strong>Add Theorem Styles</strong>: Customize theorem environments in <code>_bookdown.yml</code> for specific needs:
+<code>markdown  theorem:    lab: "Theorem "    lem: "Lemma "</code></li>
+</ul>
+<div class="blackbox">
+<div class="center">
+<p><strong>EXERCISE TIME!</strong></p>
+</div>
+<p>Add an equation and a theorem to your document using LaTeX. Alternatively, copy over some LaTeX code you’ve written before and place it in one of your chapters.</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-latex.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub", "_main.word"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"output_dir": "docs"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
